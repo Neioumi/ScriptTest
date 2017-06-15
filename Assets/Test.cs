@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using System.Linq;
+// using UnityEditor; // エディタ拡張に使用するためのもの。ビルド時にエラーになるとのこと
 
 
 public class Test : MonoBehaviour {
@@ -40,9 +41,9 @@ public class Test : MonoBehaviour {
 			// 0〜randomMaxRangeの範囲の乱数で値を代入
 			int randomNum = Random.Range(0, randomMaxRange);
 			// randomNumが配列に含まれている限り回り続ける
-			// メンターさんに教えてもらった下記だとエラーになったのは先頭で宣言すべきものが足りなかった？
-			// while (array.Contains(randomNum))
-			while (ArrayUtility.Contains(array, randomNum)) {
+				// 下記は、UnityEditorのクラスを使ってしまっていたので修正
+				// while (ArrayUtility.Contains(array, randomNum)) 
+			while (array.Contains(randomNum)) { // System.Linq で配列でもContainsが使えるようになる
 				//ランダム値を生成
 				randomNum = Random.Range(0, randomMaxRange);
 			}
